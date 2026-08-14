@@ -1002,15 +1002,26 @@ function ClientInfoTab({ lead, updateLead, onNext }) {
         <Field label="Phone"><Input type="tel" value={c.phone} onChange={(e) => set({ phone: e.target.value })} /></Field>
         <Field label="Email"><Input type="email" value={c.email} onChange={(e) => set({ email: e.target.value })} /></Field>
 
-        <div className="col-span-2 flex items-center gap-2 py-1">
-          <input
-            type="checkbox" id="isCommercial" checked={c.isCommercial}
-            onChange={(e) => set({ isCommercial: e.target.checked })}
-            style={{ accentColor: BRAND.navy }}
-          />
-          <label htmlFor="isCommercial" className="text-sm text-slate-600">
-            This is a <b>commercial</b> project (unchecked = residential)
-          </label>
+        <div className="col-span-2 py-1">
+          <span className="text-xs font-medium text-slate-500 mb-1.5 block">Project Type</span>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => set({ isCommercial: false })}
+              className="flex-1 px-4 py-2 rounded-lg text-sm font-semibold border transition"
+              style={!c.isCommercial ? { background: BRAND.navy, color: "#fff", borderColor: BRAND.navy } : { background: "#fff", color: "#64748B", borderColor: "#E2E8F0" }}
+            >
+              Residential
+            </button>
+            <button
+              type="button"
+              onClick={() => set({ isCommercial: true })}
+              className="flex-1 px-4 py-2 rounded-lg text-sm font-semibold border transition"
+              style={c.isCommercial ? { background: BRAND.navy, color: "#fff", borderColor: BRAND.navy } : { background: "#fff", color: "#64748B", borderColor: "#E2E8F0" }}
+            >
+              Commercial
+            </button>
+          </div>
         </div>
 
         {c.isCommercial && (
